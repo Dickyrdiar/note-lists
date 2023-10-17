@@ -9,7 +9,7 @@ const CardComponent = ({ onClickCard, titleCard, dateCard, deleteCard }) => {
   console.log(newTime.format('LL'))
 
   return (
-    <div className=" h-32 w-64 max-w-sm rounded bg-gray-40 overflow-hidden mt-11 shadown-lg p-4 max-w-xs max-auto">
+    <div className=" h-32 w-40 max-w-sm rounded border-2 border-sky-700 bg-gray-40 overflow-hidden mt-11 shadown-lg p-4 max-w-xs max-auto">
       <div className="text-xl font-semibold text-gray-800 mb-2">
         {titleCard}
       </div>
@@ -25,7 +25,6 @@ const CardComponent = ({ onClickCard, titleCard, dateCard, deleteCard }) => {
             src={Delete} 
             alt="delet" 
             width='20'
-            // height='125'
           />
         </a>
       </div>

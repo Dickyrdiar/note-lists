@@ -3,13 +3,16 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CardComponent from "../components/Card"
+// import NavbarComponent from "../components/Navbar"
 import PopupForm from "../components/PopupForm"
+import IconPlus from '../assets/add.png'
 
 function App() {
   const [showModal, setShowModal] = useState(false)
   const [titleNote, setTitleNote] = useState('')
   const [descNote, setDescNote] = useState('')
   const [saveData, setSaveData] = useState([])
+  const [loading, setLoading] = useState(false)
   const history = useNavigate()
 
   const handleChangeTitle = (e) => {
@@ -48,6 +51,8 @@ function App() {
       date: new Date().toUTCString()
     }
     setSaveData([...saveData, newData])
+    setTitleNote('')
+    setDescNote('')
     localStorage.setItem('formData', JSON.stringify([...saveData, newData]))
   }
 
@@ -57,12 +62,14 @@ function App() {
 
     localStorage.setItem('formData', JSON.stringify(updateNotes))
     window.location.reload()
+    setLoading(true)
   }
 
-  console.log('title', saveData);
+  console.log('title', loading);
 
   return (
     <>
+      {/* <NavbarComponent /> */}
       <div className="relative isolate px-3 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -77,28 +84,40 @@ function App() {
           />
         </div>
 
-        <div className="mx-auto max-w-4xl py-32 lg:py-56 w-full">
+        <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
           <div className="sm:mb-8 sm:flex sm:justify-center">
-            <button onClick={handleShowModal} className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              <p className="font-semibold text-indigo-600">
-                <span className="absolute inset-0" aria-hidden="true" />
-                {'+'} Create New
-              </p>
-            </button>
-          </div>
-          <PopupForm 
-            showModal={showModal} 
-            closeModal={handleHideModal}
-            titleNote={titleNote}
-            handleChangeNote={handleChangeTitle}
-            descNote={descNote}
-            handleChangeDesc={hadleDescNote}
-            handleSubmit={handleSubmit}
-          />
+            <div className="flex justify-between w-30 pt-10">
+              <div>
+                <button onClick={handleShowModal}>
+                    <img 
+                      src={IconPlus} 
+                      alt="plus" 
+                      width='80'
+                    />
+                  </button>
+              </div>
 
-          <div className="max-w-4xl w-full">
+              <div>
+                <p className="text-4xl font-bold max-w-1xl  text-indigo-600 ml-10 pt-4">
+                    Create your note Here  
+                </p>
+              </div>
+            </div>
+            <PopupForm 
+              showModal={showModal} 
+              closeModal={handleHideModal}
+              titleNote={titleNote}
+              handleChangeNote={handleChangeTitle}
+              descNote={descNote}
+              handleChangeDesc={hadleDescNote}
+              handleSubmit={handleSubmit}
+            />
+          </div>
+          
+
+          <div className="max-w-6xl w-full flex items-center justify-center w-full h-full">
             <div className="container mx-auto w-90 justify-center flex item-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {saveData?.map((val) => (
                   <CardComponent 
                     key={val.id} 
