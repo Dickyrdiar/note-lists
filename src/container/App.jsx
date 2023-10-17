@@ -38,7 +38,6 @@ function App() {
   }, [])
 
   const handleClickDetail = (val) => {
-    console.log(val)
     history(`/detail-note/${val}`)
     localStorage.setItem('dataDetail', JSON.stringify(val))
   }
