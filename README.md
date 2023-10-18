@@ -43,7 +43,12 @@ To get a local copy of this project up and running, follow these steps:
    ```shell
      cd note-lists
    ```
-3. Start the development server:
+3. install dependencies:
+   ```shell
+     npm install
+   ```
+
+4. Start the development server:
    ```shel
      npm run dev
    ```
