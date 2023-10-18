@@ -1,4 +1,4 @@
-# KapanLibur App
+# Note lists 
 
 note list is a program that I made to record notes in our daily activities and also makes it easier for us to record what we need.
 
