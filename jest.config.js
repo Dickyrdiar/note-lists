@@ -1,11 +1,16 @@
-module.exports = {
-  preset: 'ts-jest',
+export default {
+  preset: 'vite-jest',
   testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
-  },
-  transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-    '^.+\\.tsx?$': 'ts-jest',
-  },
-};
+
+  testPathIgnorePatterns: [
+    '/node_modules',
+  ],
+
+  testMatch: [
+    '**/*.test.js'
+  ],
+
+  setupFilesAfterEnv: [
+    './src/__setup__/setupTests.js',
+  ],
+}
