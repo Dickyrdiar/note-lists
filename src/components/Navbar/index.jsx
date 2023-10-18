@@ -28,10 +28,10 @@ const Navbar = () => {
             className="w-10 h-10 rounded-full cursor-pointer"
           />
           <button
-            className="ml-4 text-white hover:underline"
+            className="ml-4 text-gray-500 hover:underline"
             onClick={() => toggleDropdown}
           >
-            User Name
+           {`user's`}
           </button>
           {isDropdownOpen && (
             <div className="mt-2 p-2 bg-white rounded-lg shadow-lg absolute right-0">
